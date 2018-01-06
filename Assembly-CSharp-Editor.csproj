@@ -68,6 +68,14 @@
      <Compile Include="Assets\net.fabrejean\Editor\Plugins\EditorCoroutine.cs" />
      <Compile Include="Assets\net.fabrejean\Editor\Plugins\HttpWrapper.cs" />
      <Compile Include="Assets\net.fabrejean\Editor\Plugins\JSON.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\_Internal\Editor\PlayMakerNavMeshAreaMaskField.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\Agent\Editor\AgentSamplePathPositionCustomEditor.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\Agent\Editor\SetAgentAreaMaskCustomEditor.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\NavMesh\Editor\NavMeshCalculatePathBetweenGameObjectsCustomEditor.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\NavMesh\Editor\NavMeshCalculatePathCustomEditor.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\NavMesh\Editor\NavMeshFindClosestEdgeCustomEditor.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\NavMesh\Editor\NavMeshRaycastCustomEditor.cs" />
+     <Compile Include="Assets\PlayMaker PathFinding\NavMesh\Editor\NavMeshSamplePositionCustomEditor.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\BaseClasses\OnAnimatorUpdateActionEditorBase.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\GetAnimatorAnimatorRootActionEditor.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\GetAnimatorBodyActionEditor.cs" />

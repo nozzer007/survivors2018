@@ -27,6 +27,11 @@
 /Users/marknosworthy/survivorsdev/Temp/bin/Debug/UnityEditor.iOS.Extensions.dll
 /Users/marknosworthy/survivorsdev/Temp/bin/Debug/UnityEditor.AppleTV.Extensions.dll
 /Users/marknosworthy/survivorsdev/Temp/bin/Debug/UnityEditor.OSXStandalone.Extensions.dll
+/Users/marknosworthy/survivorsdev/Temp/bin/Debug/PlayMaker.dll
+/Users/marknosworthy/survivorsdev/Temp/bin/Debug/ConditionalExpression.dll
+/Users/marknosworthy/survivorsdev/Temp/bin/Debug/ConditionalExpressionEditor.dll
+/Users/marknosworthy/survivorsdev/Temp/bin/Debug/PlayMakerEditor.dll
+/Users/marknosworthy/survivorsdev/Temp/bin/Debug/PlayMakerEditorResources.dll
 /Users/marknosworthy/survivorsdev/Temp/bin/Debug/UnityEngine.Advertisements.dll
 /Users/marknosworthy/survivorsdev/Temp/bin/Debug/UnityEditor.Advertisements.dll
 /Users/marknosworthy/survivorsdev/Temp/bin/Debug/UnityEngine.Analytics.dll
