@@ -51,6 +51,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\net.fabrejean\Editor\Common\Utils.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\Common\VersionInfo.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\Common\WWW.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\MarkDownSharp\Escapes.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\MarkDownSharp\MarkDownFileInspector.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\MarkDownSharp\MarkdownGUI.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\MarkDownSharp\MarkdownParser.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\MarkDownSharp\ObjectInspector.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\PlayMaker\Ecosystem\Classes\EcosystemUtils.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\PlayMaker\Ecosystem\Classes\Item.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\PlayMaker\Ecosystem\Classes\ItemDocumentation.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\PlayMaker\Ecosystem\Classes\WebImageManager.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\PlayMaker\Ecosystem\EcosystemBrowser.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\PlayMaker\Ecosystem\Tools\ProjectScanner\ProjectScanner.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\Plugins\EditorCoroutine.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\Plugins\HttpWrapper.cs" />
+     <Compile Include="Assets\net.fabrejean\Editor\Plugins\JSON.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\BaseClasses\OnAnimatorUpdateActionEditorBase.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\GetAnimatorAnimatorRootActionEditor.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\Editor\GetAnimatorBodyActionEditor.cs" />
@@ -151,6 +168,8 @@
      <Compile Include="Assets\PlayMaker\Editor\PreUpdateChecker.cs" />
      <Compile Include="Assets\PlayMaker\Editor\ReportWindow.cs" />
      <Compile Include="Assets\Realistic Hovercraft Controller\Editor\RHCHovercraftEditor.cs" />
+     <None Include="Assets\net.fabrejean\Editor\Common\GuiSkins\VolcanicGuiSkin\ReadMeForCredits.txt" />
+     <None Include="Assets\net.fabrejean\Editor\Common\GuiSkins\README.txt" />
      <None Include="Assets\PlayMaker\Editor\Install\readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
