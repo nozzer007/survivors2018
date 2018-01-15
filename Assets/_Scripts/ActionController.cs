@@ -24,10 +24,10 @@ public class ActionController : MonoBehaviour {
 		
 	}
 
-	public string PerformActionButton()
+	public string PerformActionButton2()
 	{
 		//I've pressed the Action button triggered in RHC_HoverController
-		Debug.Log("Called Action");
+		//Debug.Log("Called Action");
 		//Im in the landing zone and landed
 		if (inLandingZone && landed) {
 			//TriggerTakeOff;
@@ -39,7 +39,7 @@ public class ActionController : MonoBehaviour {
 			//TriggerTakeOff
 			//landed = true;
 			fireLaser = false;
-			return "LANDED";
+			return "READYTOLAND";
 		}
 
 		if (!inLandingZone) {

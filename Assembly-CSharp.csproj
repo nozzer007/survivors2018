@@ -52,17 +52,21 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\_Scripts\ActionController.cs" />
+     <Compile Include="Assets\_Scripts\CameraController.cs" />
      <Compile Include="Assets\_Scripts\GameController.cs" />
      <Compile Include="Assets\_Scripts\GameControlsUI.cs" />
-     <Compile Include="Assets\_Scripts\LandingTakeOffController.cs" />
+     <Compile Include="Assets\_Scripts\GroundLandingCollider.cs" />
      <Compile Include="Assets\_Scripts\LandingZone.cs" />
      <Compile Include="Assets\_Scripts\LandingZoneExit.cs" />
      <Compile Include="Assets\_Scripts\Level2Objectives.cs" />
      <Compile Include="Assets\_Scripts\LevelObjectives.cs" />
      <Compile Include="Assets\_Scripts\ShipGunController.cs" />
+     <Compile Include="Assets\_Scripts\ShipStatus.cs" />
      <Compile Include="Assets\_Scripts\Survivor.cs" />
      <Compile Include="Assets\_Scripts\SurvivorManager.cs" />
      <Compile Include="Assets\iTween\iTween.cs" />
+     <Compile Include="Assets\MSAdvancedCameraController\Example\VehicleController.cs" />
+     <Compile Include="Assets\MSAdvancedCameraController\Scripts\MSCameraController.cs" />
      <Compile Include="Assets\PlayMaker PathFinding\Agent\AgentActivateCurrentOffMeshLink.cs" />
      <Compile Include="Assets\PlayMaker PathFinding\Agent\AgentCompleteOffMeshLink.cs" />
      <Compile Include="Assets\PlayMaker PathFinding\Agent\AgentFindClosestEdge.cs" />
@@ -986,6 +990,7 @@
      <None Include="Assets\Realistic Hovercraft Controller\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Jeremy\Docs\MaleCharacterAnimation.txt" />
      <None Include="Assets\Realistic Hovercraft Controller\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
+     <None Include="Assets\MSAdvancedCameraController\UpdateNotes.txt" />
      <None Include="Assets\Realistic Hovercraft Controller\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
      <None Include="Assets\Realistic Hovercraft Controller\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Realistic Hovercraft Controller\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />

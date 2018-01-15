@@ -140,6 +140,14 @@ public class RHCHovercraftEditor : Editor {
 
 		EditorGUILayout.Space();
 		GUI.color = Color.cyan;
+		EditorGUILayout.HelpBox("GroundLandedCollider", MessageType.None);
+		GUI.color = defBackgroundColor;
+		EditorGUILayout.Space();
+
+		EditorGUILayout.PropertyField(serializedObject.FindProperty("groundLandingCollider"), new GUIContent("Ground Collider for Tae Off", "Ground Collider for Tae Off"));
+
+		EditorGUILayout.Space();
+		GUI.color = Color.cyan;
 		EditorGUILayout.HelpBox("Damage", MessageType.None);
 		GUI.color = defBackgroundColor;
 		EditorGUILayout.Space();

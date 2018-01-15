@@ -29,14 +29,14 @@ public class LandingZoneExit : MonoBehaviour {
 	void OnTriggerEnter(Collider col)
 	{
 		//if this is a landing zone entry, update the flight status
-		if (col.transform.gameObject.name == "Hovercraft")
+		if (col.transform.gameObject.name == "HovercraftLandingCollider")
 		{
 			//landed,inLandingzone
 			if (gameController.getShipStatus () == "LANDED")
 				return;
-			gameController.UpdateFlightStatus(true,false,"EXIT");
+			gameController.UpdateFlightStatus(true,false,"EXIT",true);
 
-			gameController.LandingPressed = true;
+			//gameController.LandingPressed = true;
 		}
 
 	}
@@ -45,11 +45,11 @@ public class LandingZoneExit : MonoBehaviour {
 	{
 
 		//hidden
-		if (col.transform.gameObject.name == "Hovercraft") {
+		if (col.transform.gameObject.name == "HovercraftLandingCollider") {
 
 			//landed,inLandingzone
-			gameController.UpdateFlightStatus(false,false,"EXIT");
-			gameController.LandingPressed = false;
+			gameController.UpdateFlightStatus(false,false,"EXIT",false);
+			//gameController.LandingPressed = false;
 
 		}
 	}

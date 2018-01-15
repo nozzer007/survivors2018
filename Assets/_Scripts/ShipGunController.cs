@@ -222,11 +222,6 @@ public class ShipGunController : MonoBehaviour {
 
 	public void FireLaser(bool buttonPressed)
 	{
-		if (buttonPressed)
-			Debug.Log ("FIRE BUTTON PRESSED");
-		else
-			Debug.Log ("FIRE BUTTON NOT PRESSED");	
-		
 		FireWep = buttonPressed;
 	}
 		

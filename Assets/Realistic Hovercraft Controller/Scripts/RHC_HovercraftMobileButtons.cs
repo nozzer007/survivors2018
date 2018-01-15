@@ -19,9 +19,11 @@ public class RHC_HovercraftMobileButtons : MonoBehaviour {
 	public RHC_HovercraftUIButton leftButton;
 	public RHC_HovercraftUIButton rightButton;
 	public RHC_HovercraftUIButton actionButton;
+	public RHC_HovercraftUIButton laserButton;
 
 	internal float gasInput = 0f;
 	internal float actionInput = 0f;
+	internal float laserInput = 0f;
 	internal float steerInput = 0f;
 
 	public Image actionComponentImage;
@@ -58,11 +60,11 @@ public class RHC_HovercraftMobileButtons : MonoBehaviour {
 	{
 		actionImage = gameController.getShipStatus ();
 
-		if (actionImage == "FLYING")
-			actionComponentImage.sprite = FLYING;	
+	//	if (actionImage == "FLYING")
+	//		actionComponentImage.sprite = FLYING;	
 		if(actionImage=="LANDED")
 			actionComponentImage.sprite = LANDED;
-		if(actionImage=="READYTOLAND")
+		if(actionImage=="FLYING")
 			actionComponentImage.sprite = READYTOLAND;
 
 }
@@ -83,7 +85,7 @@ public class RHC_HovercraftMobileButtons : MonoBehaviour {
 		//gasInput = accelerateButton.input + (-reverseButton.input);
 		gasInput = accelerateButton.input;
 		actionInput = actionButton.input;
-
+		laserInput = laserButton.input;
 
 		steerInput = -leftButton.input + rightButton.input;
 
@@ -93,6 +95,7 @@ public class RHC_HovercraftMobileButtons : MonoBehaviour {
 				hoverControllers [i].gasInput = gasInput;
 				hoverControllers [i].steerInput = steerInput;
 				hoverControllers [i].actionInput = actionInput;
+				hoverControllers [i].laserInput = laserInput;
 			}
 
 		}

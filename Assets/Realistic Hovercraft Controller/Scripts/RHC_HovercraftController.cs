@@ -15,8 +15,9 @@ public class RHC_HovercraftController : MonoBehaviour {
 
 	//Rigidbody
 	private Rigidbody rigid;
-	private ActionController actionController;
+//	private ActionController actionController;
 	public Transform COM;
+	public GameObject groundLandingCollider;
 
 	//Receive Player Inputs and Engine Running Bool
 	public bool canControl = true;
@@ -52,6 +53,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 	//Inputs
 	[HideInInspector]public float gasInput = 0f;
 	[HideInInspector]public float actionInput = 0f;
+	[HideInInspector]public float laserInput = 0f;
 	[HideInInspector]public float steerInput = 0f;
 
 	private float maxFuel = 2000.0f;
@@ -145,7 +147,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 		rigid.centerOfMass = COM.localPosition;
 		rigid.maxAngularVelocity = maximumAngularVelocity;
 
-		actionController = GetComponent<ActionController> ();
+//		actionController = GetComponent<ActionController> ();
 
 		SoundsInit();
 		ParticlesInit();
@@ -292,28 +294,32 @@ public class RHC_HovercraftController : MonoBehaviour {
 		shipStatus = gameController.getShipStatus();
 		if (shipStatus != "LEVELCOMPLETE") {
 			if (fuelRemaining > 0) {
+				//It wont take off again as the engne isnt running so it doesnt get beyond this if check.
+				if (shipStatus == "LANDED") {
+					if (actionInput > 0)
+						TakeOff ();
+
+				}
 				if (!engineRunning)
 					return;
 				if (shipStatus == "FLYING") {
 					AllowFlyingControls ();
-					if (actionInput > 0) {
+					if (actionInput > 0)
+						Land ();
+					if (laserInput > 0) {
 						FireLaser (true);
 					} else {
 						FireLaser (false);
 					}		
 				}
 
-				if (shipStatus == "LANDED") {
-					if (actionInput > 0)
-						TakeOff ();
 
-				}
 
-				if (shipStatus == "READYTOLAND") {
-					if (actionInput > 0)
-						Land ();
+			//	if (shipStatus == "READYTOLAND") {
+			//		if (actionInput > 0)
+			//			Land ();
 
-				}
+			//	}
 		
 			} else {
 				Debug.Log ("YOU RAN OUT OF FUEL");
@@ -331,6 +337,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 
 	void AllowFlyingControls()
 	{
+
 			//Debug.Log ("In Control");
 			Inputs ();
 			Particles ();
@@ -361,20 +368,22 @@ public class RHC_HovercraftController : MonoBehaviour {
 			engineRunning = true;
 		}
 	}
+	public float fuelRetard = 0f;
 
 	public void Land()
 	{
 		if (!gameController.LandingPressed) {
 			Debug.Log ("Land");	
-
+			//engineRunning = false;
 			gameController.LandingPressed = true;
-			gameController.SetLandingIndexFromLastLandedPad ();
-			gameController.readyToFly ();
+			fuelRetard = 0.9f;
+//			gameController.SetLandingIndexFromLastLandedPad ();
+//			gameController.readyToFly ();
 
 //get the ship to rotate to the original 
-			this.transform.eulerAngles = originalRotationPosition;
-			if (gameController.inZoneType == "FUEL")
-				RestoreFuel ();
+//			this.transform.eulerAngles = originalRotationPosition;
+//			if (gameController.inZoneType == "FUEL")
+//				RestoreFuel ();
 		}
 	}
 
@@ -384,7 +393,10 @@ public class RHC_HovercraftController : MonoBehaviour {
 		if (!gameController.LandingPressed)
 		{
 			Debug.Log ("Take Off");
+			//engineRunning = true;
+			//gameController.UpdateFlightStatus (false, false, "TERRAINTOFF",true);
 			gameController.LandingPressed = true;
+			fuelRetard = 0;
 			rigid.AddForce (transform.up * 8, ForceMode.VelocityChange);
 			rigid.AddForce (transform.forward * 5, ForceMode.VelocityChange);
 		}
@@ -394,10 +406,10 @@ public class RHC_HovercraftController : MonoBehaviour {
 
 	void FireLaser(bool buttonPressed)
 	{
-		Debug.Log ("Fire Laser");
+		//Debug.Log ("Fire Laser");
 		laser = GetComponent<ShipGunController> ();
 		laser.FireLaser (buttonPressed);
-
+		//engineRunning=false;
 	}
 
 	void Inputs(){
@@ -422,7 +434,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 		fuelRemaining -= (gasInput + tickOver);
 
 		//Debug.Log ("(Fuel using-" + gasInput + ") (Fuel remaining-"+fuelRemaining+")");
-		Debug.Log("FUEL UPDATING");
+		//Debug.Log("FUEL UPDATING");
 		speed = rigid.velocity.magnitude * 3.6f;
 
 		if(speed < maximumSpeed)
@@ -478,7 +490,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 			}
 			
 			foreach(Light l in particleLights){
-				l.intensity = Mathf.Lerp(l.intensity, 0f, Time.deltaTime * 1f);
+				l.intensity = Mathf.Lerp(l.intensity, 0f, Time.deltaTime * 0.5f);
 			}
 
 			return;
@@ -493,7 +505,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 		}
 
 		foreach(Light l in particleLights){
-			l.intensity = Mathf.Lerp(.25f, 2f, Mathf.Abs(gasInput * 2f));
+			l.intensity = Mathf.Lerp(.25f, 1f, Mathf.Abs(gasInput * 0.02f));
 		}
 
 		for(int i = 0; i < stabilizerThrusters.Count; i++){
@@ -552,6 +564,16 @@ public class RHC_HovercraftController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 
+
+
+		if (col.transform.gameObject.tag == "Terrain" && gameController.LandingPressed) {
+			Debug.Log ("COLIDED WITH = " + col.transform.gameObject.name);
+			gameController.UpdateFlightStatus (true, false, "TERRAINLND",false);
+			groundLandingCollider.gameObject.transform.position = this.transform.position;
+			//gameController.LandingPressed = false;
+			//gameController.getShipStatus ();
+		}
+
 		if(col.relativeVelocity.magnitude < 2.5f)
 			return;
 
@@ -594,7 +616,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 	}
 
 	void OnDrawGizmos(){
-
+		
 		RaycastHit hit;
 
 		for(int i = 0; i < stabilizerThrusters.Count; i++){

@@ -30,13 +30,15 @@ public class LandingZone : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
 	{
+		Debug.Log ("Entered Landing Zone Entry="+col.transform.gameObject.name);
 		//hidden
-		if (col.transform.gameObject.name == "Hovercraft") {
+		if (col.transform.gameObject.name == "HovercraftLandingCollider") {
 
 			//landed,inLandingzone
-			gameController.UpdateFlightStatus(false,true,ZoneType);
-			gameController.LandingPressed = false;
+			gameController.UpdateFlightStatus(false,true,ZoneType, false);
+			//gameController.LandingPressed = false;
 			gameController.SetLandingZoneIndex (LandingZoneIndex);
+			LandingZoneEntry ();
 		}
 
 	}
@@ -44,13 +46,21 @@ public class LandingZone : MonoBehaviour {
 	void OnTriggerExit(Collider col)
 	{
 		//hidden
-		if (col.transform.gameObject.name == "Hovercraft") {
+		if (col.transform.gameObject.name == "HovercraftLandingCollider") {
 
 			//landed,inLandingzone
 			//col.gameObject.GetComponent<RHC_HovercraftController>().RestoreFuel();
-			gameController.UpdateFlightStatus(false,false,ZoneType);
-			gameController.LandingPressed = false;
+			gameController.UpdateFlightStatus(false,false,ZoneType, false);
+			//gameController.LandingPressed = false;
 
 		}
+	}
+
+	void LandingZoneEntry()
+	{
+
+		gameController.UpdateSurvivorsSaved ();
+		gameController.readyToFly ();
+
 	}
 }

@@ -38,12 +38,13 @@ public class RHC_Thruster : MonoBehaviour {
 	}
 		
 	void FixedUpdate () {
-
+		
 		if (!hoverController || !rigid) {
 			enabled = false;
 			return;
 		}
-			
+		if (gameController.getShipStatus () == "LANDED" || !hoverController.engineRunning)
+			return;
 		fuelInput = Mathf.Lerp (fuelInput, hoverController.engineRunning ? 1f : 0f, Time.fixedDeltaTime);
 
 		springConstant = hoverController.stabilizerConstant;
@@ -55,17 +56,27 @@ public class RHC_Thruster : MonoBehaviour {
 
 		if(Physics.Raycast(transform.position, -hoverController.transform.up, out hit, restLenght + .5f)){
 
-			if (hit.collider.tag == "LandingZone" || gameController.getShipStatus () == "LANDED") {
-				Debug.Log("Thruster HIT whilst landed returning-" + hit.collider.tag);
+			if (hit.collider.tag == "LandingZone" || gameController.getShipStatus () == "LANDED" || hit.collider.tag == "Survivor") {
+				//Debug.Log("Thruster HIT whilst landed returning-" + hit.collider.tag);
 				return;
 			}
 			previouseLenght = currentLenght;
 			currentLenght = restLenght - (hit.distance - .5f);
 			springVelocity = (currentLenght - previouseLenght) / Time.fixedDeltaTime;
-			springForce = springConstant * currentLenght;
-			damperForce = damperConstant * springVelocity;
 
-			rigid.AddForceAtPosition((hoverController.transform.up * (springForce + damperForce)) * fuelInput, transform.position);
+			//Debug.Log("S="+springForce + ":D="+damperForce+":F="+(fuelInput-hoverController.fuelRetard));
+
+			//Has fuel flow been slowed down to land the ship, if yes then signifanctly eas dmaping to allow for landing.
+			if (hoverController.fuelRetard != 0) {
+				springForce = 0;
+				damperForce = 0;
+			} else {
+				springForce = springConstant * currentLenght;
+				damperForce = damperConstant * springVelocity;
+			}
+
+			rigid.AddForceAtPosition((hoverController.transform.up * (springForce + damperForce)) * (fuelInput-hoverController.fuelRetard), transform.position);
+			//rigid.AddForceAtPosition((hoverController.transform.up * (springForce + damperForce)) * 0.04f, transform.position);
 
 		}
 

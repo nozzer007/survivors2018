@@ -38,6 +38,13 @@ public class GameController : MonoBehaviour
 	public Text display_time;
 	public Text display_fuel;
 
+	[Range(0,15)]public float cam_howCloseZoom = 6f;
+	[Range(10,30)]public float cam_howFarZoom = 15f;
+
+	int survivorsBoarded =0;
+	int survivorsSaved = 0;
+	int shipCapacity = 4;
+
 	//boolean to stop looping through when restart button is shown.  The game routines do not continue unless this is set to true.
 	bool restarted = true;
 
@@ -180,41 +187,39 @@ public class GameController : MonoBehaviour
 	{
 		//I've pressed the Action button triggered in RHC_HoverController
 		//Im in the landing zone and landed
-		if (landed && inLandingZone) {
+		//if (landed && inLandingZone) {
+			if (landed) {
+
 			//TriggerTakeOff;
 			fireLaser = false;
 			//Debug.Log ("Returning - LANDED 1");
 			//Used to be set to LANDED changed after when you died, not sure if landed is relevant anymore
+			SetLanding();
 			return "LANDED";
 		}
 		//Im in the landing zone but not landed
 		if (!landed && inLandingZone) {
-			//TriggerTakeOff
-			//landed = true;
 			fireLaser = false;
-			//Debug.Log ("Returning - LANDED 2");
+			SetLanding();
 			return "READYTOLAND";
 		}
 		if (inZoneType == "FINAL") {
+			SetLanding ();
 			return "LEVELCOMPLETE";
 		}
-		if (!inLandingZone) {
-			//FireLaser
-			fireLaser = true;
-			//Debug.Log ("Returning - FLYING 1");
-			return "FLYING";
-		}
 
-		//Debug.Log ("Returning - FLYING 2");
+		fireLaser = true;
+		SetInFlight();
 		return "FLYING";
 
 	}
 
-	public void UpdateFlightStatus(bool _landed,bool _inLandingzone,string _inZoneType)
+	public void UpdateFlightStatus(bool _landed,bool _inLandingzone,string _inZoneType, bool _landingPressed)
 	{
 		landed = _landed;
 		inLandingZone = _inLandingzone;
 		inZoneType = _inZoneType;
+		LandingPressed = _landingPressed;
 	}
 
 	public void SetLandingZoneIndex(int _index)
@@ -225,6 +230,36 @@ public class GameController : MonoBehaviour
 
 	public void SaveASurvivor()
 	{
-		Debug.Log ("You just saved a survivor");
+		Debug.Log ("A survivor has boarded the ship");
+
+		survivorsBoarded += 1;
+		if (survivorsBoarded == shipCapacity) {
+			Debug.Log ("You need to take the survivors to a dock, you've no more space");
+		}
 	}
+
+	public void UpdateSurvivorsSaved ()
+	{
+		survivorsSaved += survivorsBoarded;
+		Debug.Log ("You've saved " + survivorsSaved + " people.");
+		survivorsBoarded = 0;
+
+	}
+
+	public void SetInFlight()
+	{
+		setCameraZoom (4, 15);
+	}
+
+	public void SetLanding()
+	{
+		setCameraZoom (2.5f, 15);
+	}
+
+	public void setCameraZoom(float _close, float _far)
+	{
+			cam_howCloseZoom = _close;
+			cam_howFarZoom = _far;
+	}
+
 }
