@@ -34,9 +34,8 @@ public class LandingZoneExit : MonoBehaviour {
 			//landed,inLandingzone
 			if (gameController.getShipStatus () == "LANDED")
 				return;
-			gameController.UpdateFlightStatus(true,false,"EXIT",true);
+			gameController.UpdateFlightStatus(true,false,"EXIT",false);
 
-			//gameController.LandingPressed = true;
 		}
 
 	}
@@ -49,7 +48,7 @@ public class LandingZoneExit : MonoBehaviour {
 
 			//landed,inLandingzone
 			gameController.UpdateFlightStatus(false,false,"EXIT",false);
-			//gameController.LandingPressed = false;
+
 
 		}
 	}

@@ -1,28 +1,25 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Realistic Hovercraft Controller/Scripts/RHC_HovercraftMobileButtons.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Scripts/GameController.cs">
     <Files>
-      <File FileName="Assets/_Scripts/CameraController.cs" Line="102" Column="1" />
-      <File FileName="Assets/_Scripts/ShipGunController.cs" Line="225" Column="1" />
+      <File FileName="Assets/_Scripts/GroundLandingCollider.cs" Line="35" Column="1" />
+      <File FileName="Assets/_Scripts/CameraController.cs" Line="108" Column="1" />
+      <File FileName="Assets/_Scripts/ShipGunController.cs" Line="1" Column="1" />
       <File FileName="Assets/Jeremy/Docs/MaleCharacterAnimation.txt" Line="1" Column="1" />
-      <File FileName="Assets/_Scripts/ActionController.cs" Line="30" Column="5" />
+      <File FileName="Assets/_Scripts/ActionController.cs" Line="1" Column="1" />
       <File FileName="Assets/net.fabrejean/Editor/PlayMaker/Ecosystem/EcosystemBrowser.cs" Line="1" Column="1" />
-      <File FileName="Assets/Realistic Hovercraft Controller/Scripts/RHC_Thruster.cs" Line="73" Column="1" />
-      <File FileName="Assets/_Scripts/GameController.cs" Line="187" Column="1" />
-      <File FileName="Assets/Realistic Hovercraft Controller/Scripts/RHC_HovercraftController.cs" Line="329" Column="1" />
-      <File FileName="Assets/_Scripts/LandingZoneExit.cs" Line="42" Column="1" />
-      <File FileName="Assets/_Scripts/ShipStatus.cs" Line="48" Column="1" />
-      <File FileName="Assets/_Scripts/LandingZone.cs" Line="35" Column="1" />
+      <File FileName="Assets/Realistic Hovercraft Controller/Scripts/RHC_Thruster.cs" Line="60" Column="7" />
+      <File FileName="Assets/_Scripts/GameController.cs" Line="48" Column="9" />
+      <File FileName="Assets/Realistic Hovercraft Controller/Scripts/RHC_HovercraftController.cs" Line="301" Column="1" />
+      <File FileName="Assets/_Scripts/LandingZoneExit.cs" Line="51" Column="1" />
+      <File FileName="Assets/_Scripts/ShipStatus.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Scripts/LandingZone.cs" Line="44" Column="1" />
       <File FileName="Assets/Realistic Hovercraft Controller/Scripts/RHC_HovercraftMobileButtons.cs" Line="55" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/marknosworthy/survivorsdev/Assets/_Scripts/CameraController.cs" line="102" column="1" />
-      <Breakpoint file="/Users/marknosworthy/survivorsdev/Assets/_Scripts/LandingZoneExit.cs" line="32" column="1" />
-      <Breakpoint file="/Users/marknosworthy/survivorsdev/Assets/_Scripts/LandingZone.cs" line="35" column="1" />
-      <Breakpoint file="/Users/marknosworthy/survivorsdev/Assets/_Scripts/LandingZone.cs" line="48" column="1" />
-      <Breakpoint file="/Users/marknosworthy/survivorsdev/Assets/_Scripts/GameController.cs" line="187" column="1" />
+      <Breakpoint file="/Users/marknosworthy/survivorsdev/Assets/_Scripts/LandingZone.cs" line="40" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

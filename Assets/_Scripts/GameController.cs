@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
 	public Button restart_button;
 	public Text display_time;
 	public Text display_fuel;
+	public Text display_survivors;
 
 	[Range(0,15)]public float cam_howCloseZoom = 6f;
 	[Range(10,30)]public float cam_howFarZoom = 15f;
@@ -44,6 +45,7 @@ public class GameController : MonoBehaviour
 	int survivorsBoarded =0;
 	int survivorsSaved = 0;
 	int shipCapacity = 4;
+	string tempSurvivor;
 
 	//boolean to stop looping through when restart button is shown.  The game routines do not continue unless this is set to true.
 	bool restarted = true;
@@ -60,8 +62,8 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		readyToFly ();	
-
 		UpdateTimer();
+		UpdateSurvivorsDisplay ();
 		Time.timeScale = 1;
 
 	}
@@ -81,10 +83,7 @@ public class GameController : MonoBehaviour
 
 	}
 
-	public void SetLandingIndexFromLastLandedPad()
-	{
-		lastLandedIndex = temp_lastLandedIndex;
-	}
+
 	public void readyToFly()
 	{
 		
@@ -92,7 +91,7 @@ public class GameController : MonoBehaviour
 		if (inZoneType == "FINAL") {
 			LevelCompleted ();
 		} else {
-			player.GetComponent<RHC_HovercraftController> ().RestoreFuel ();
+			player.GetComponent<RHC_HovercraftController> ().ResetShip ();
 		}
 	}
 
@@ -126,6 +125,7 @@ public class GameController : MonoBehaviour
 	{
 		if (restarted) {
 			Debug.Log ("LOSE A LIFE");
+			SurvivorsUpdate ();
 			PauseGame ();
 			livesRemaining = livesRemaining - 1;
 			if (livesRemaining == 0 || livesRemaining < 0) {
@@ -138,7 +138,6 @@ public class GameController : MonoBehaviour
 			}
 		}
 	}
-
 
 	void Respawn()
 	{
@@ -224,28 +223,10 @@ public class GameController : MonoBehaviour
 
 	public void SetLandingZoneIndex(int _index)
 	{
-		temp_lastLandedIndex = _index;
+		lastLandedIndex = _index;
 
 	}
-
-	public void SaveASurvivor()
-	{
-		Debug.Log ("A survivor has boarded the ship");
-
-		survivorsBoarded += 1;
-		if (survivorsBoarded == shipCapacity) {
-			Debug.Log ("You need to take the survivors to a dock, you've no more space");
-		}
-	}
-
-	public void UpdateSurvivorsSaved ()
-	{
-		survivorsSaved += survivorsBoarded;
-		Debug.Log ("You've saved " + survivorsSaved + " people.");
-		survivorsBoarded = 0;
-
-	}
-
+				
 	public void SetInFlight()
 	{
 		setCameraZoom (4, 15);
@@ -260,6 +241,43 @@ public class GameController : MonoBehaviour
 	{
 			cam_howCloseZoom = _close;
 			cam_howFarZoom = _far;
+	}
+
+
+
+
+	void SurvivorsUpdate()
+	{
+		survivorsBoarded = 0;
+		UpdateSurvivorsDisplay();
+		Debug.Log("Need to code the respawn any survivors that have been saved, back to original positions, as they been lost.");
+	}
+
+	public void SaveASurvivor()
+	{
+		Debug.Log ("A survivor has boarded the ship");
+
+		survivorsBoarded += 1;
+		if (survivorsBoarded == shipCapacity) {
+			Debug.Log ("You need to take the survivors to a dock, you've no more space");
+		}
+		UpdateSurvivorsDisplay();
+	}
+
+	public void UpdateSurvivorsSaved ()
+	{
+		survivorsSaved += survivorsBoarded;
+		Debug.Log ("You've saved " + survivorsSaved + " people.");
+		survivorsBoarded = 0;
+		UpdateSurvivorsDisplay();
+
+	}
+
+	void UpdateSurvivorsDisplay()
+	{
+		tempSurvivor = "SURVIVORS : " + survivorsBoarded + "-" + survivorsSaved;
+		display_survivors.text = tempSurvivor;
+		Debug.Log (tempSurvivor);
 	}
 
 }

@@ -138,7 +138,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 		{
 			Debug.Log ("Cannot find 'GameController' in ShipGunGeneric script");
 		}
-		RestoreFuel ();
+
 	}
 	
 	void Start (){
@@ -148,6 +148,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 		rigid.maxAngularVelocity = maximumAngularVelocity;
 
 //		actionController = GetComponent<ActionController> ();
+		ResetShip ();
 
 		SoundsInit();
 		ParticlesInit();
@@ -164,6 +165,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 			OnRHCSpawned();
 
 		originalRotationPosition = this.transform.rotation.eulerAngles;
+
 	}
 
 	void SoundsInit(){
@@ -296,8 +298,12 @@ public class RHC_HovercraftController : MonoBehaviour {
 			if (fuelRemaining > 0) {
 				//It wont take off again as the engne isnt running so it doesnt get beyond this if check.
 				if (shipStatus == "LANDED") {
-					if (actionInput > 0)
+					
+					if (actionInput > 0) {
 						TakeOff ();
+					} else {
+						//engineRunning = false;
+					}
 
 				}
 				if (!engineRunning)
@@ -325,9 +331,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 				Debug.Log ("YOU RAN OUT OF FUEL");
 				gameController.LoseALife ();
 				StopShipMovement ();
-				engineRunning = false;
-				Particles ();
-				Lights ();
+
 
 			}
 		}
@@ -359,6 +363,15 @@ public class RHC_HovercraftController : MonoBehaviour {
 		rigid.velocity = Vector3.zero;
 		rigid.angularVelocity = Vector3.zero;
 		speed = 0;
+		engineRunning = false;
+		Particles ();
+		Lights ();
+	}
+
+	public void ResetShip()
+	{
+		StopShipMovement ();
+		RestoreFuel ();
 	}
 
 	public void RestoreFuel()
@@ -392,6 +405,7 @@ public class RHC_HovercraftController : MonoBehaviour {
 
 		if (!gameController.LandingPressed)
 		{
+			engineRunning = true;
 			Debug.Log ("Take Off");
 			//engineRunning = true;
 			//gameController.UpdateFlightStatus (false, false, "TERRAINTOFF",true);

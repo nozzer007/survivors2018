@@ -36,7 +36,7 @@ public class LandingZone : MonoBehaviour {
 
 			//landed,inLandingzone
 			gameController.UpdateFlightStatus(false,true,ZoneType, false);
-			//gameController.LandingPressed = false;
+
 			gameController.SetLandingZoneIndex (LandingZoneIndex);
 			LandingZoneEntry ();
 		}
@@ -49,9 +49,9 @@ public class LandingZone : MonoBehaviour {
 		if (col.transform.gameObject.name == "HovercraftLandingCollider") {
 
 			//landed,inLandingzone
-			//col.gameObject.GetComponent<RHC_HovercraftController>().RestoreFuel();
+
 			gameController.UpdateFlightStatus(false,false,ZoneType, false);
-			//gameController.LandingPressed = false;
+
 
 		}
 	}
